@@ -95,4 +95,13 @@ async def leave(ctx):
     await client.disconnect()
     musics[ctx.guild] = []
 
+
+@bot.command(name="cat")
+async def dolphin(ctx):
+    await ctx.channel.send("Very cute picture of a cat", file=discord.File('cat.jpg'))
+
+@bot.command(name="redpanda")
+async def dolphin(ctx):
+    await ctx.channel.send("Very cute picture of a red panda", file=discord.File('pandaroux.jpg'))
+
 bot.run(os.getenv("TOKEN"))
