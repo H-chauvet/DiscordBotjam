@@ -34,5 +34,9 @@ async def echo(ctx, *, content:str):
 async def dolphin(ctx):
     await ctx.channel.send("Very cute picture of a dolphin", file=discord.File('dolphin.png'))
 
+@bot.command(name="waf")
+async def waf(ctx):
+    await ctx.channel.send(f"Good boy {ctx.author.name} !")
+
 
 bot.run(os.getenv("TOKEN"))
