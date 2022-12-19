@@ -104,4 +104,8 @@ async def dolphin(ctx):
 async def dolphin(ctx):
     await ctx.channel.send("Very cute picture of a red panda", file=discord.File('pandaroux.jpg'))
 
+@bot.command(name="unicorn")
+async def dolphin(ctx):
+    await ctx.channel.send("Very cute picture of a unicorn", file=discord.File('unicorn.jpg'))
+
 bot.run(os.getenv("TOKEN"))
