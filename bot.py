@@ -16,12 +16,15 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-    if message.content == "Christmas":
-        await message.channel.send("Tree :D")
-    if message.content == "Santa":
-        await message.channel.send("Claus :D")
+    if message.content == "???":
+        await message.channel.send("????")
     await bot.process_commands(message)
 
+@bot.command(pass_context=True)
+@bot.event
+async def on_member_join(ctx, member):
+    print(f'{member} has joined a server ! Welcome to this new dog :)')
+    await ctx.send(f"Hello {member}! Welcome with your family ! PETS :D")
 
 @bot.command()
 async def ping(ctx):
