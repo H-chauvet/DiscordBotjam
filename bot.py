@@ -99,15 +99,15 @@ async def leave(ctx):
 
 
 @bot.command(name="cat")
-async def dolphin(ctx):
+async def cat(ctx):
     await ctx.channel.send("Very cute picture of a cat", file=discord.File('assets/cat.jpg'))
 
 @bot.command(name="redpanda")
-async def dolphin(ctx):
+async def redpanda(ctx):
     await ctx.channel.send("Very cute picture of a red panda", file=discord.File('assets/pandaroux.jpg'))
 
 @bot.command(name="unicorn")
-async def dolphin(ctx):
+async def unicorn(ctx):
     await ctx.channel.send("Very cute picture of a unicorn", file=discord.File('assets/unicorn.jpg'))
 
 bot.run(os.getenv("TOKEN"))
