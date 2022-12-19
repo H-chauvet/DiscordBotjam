@@ -109,5 +109,12 @@ async def redpanda(ctx):
 @bot.command(name="unicorn")
 async def unicorn(ctx):
     await ctx.channel.send("Very cute picture of a unicorn", file=discord.File('assets/unicorn.jpg'))
+    await playy(ctx, 'https://www.youtube.com/watch?v=wscODUIkvjA')
+
+
+@bot.command(name="dragon")
+async def dragon(ctx):
+    await ctx.channel.send("Very cute picture of a dragon", file=discord.File('assets/dragon.jpg'))
+    await playy(ctx, 'https://www.youtube.com/watch?v=Y2Qo2VBC2iA')
 
 bot.run(os.getenv("TOKEN"))
