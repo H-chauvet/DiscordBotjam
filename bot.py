@@ -38,5 +38,11 @@ async def dolphin(ctx):
 async def waf(ctx):
     await ctx.channel.send(f"Good boy {ctx.author.name} !")
 
+@bot.command(name="shutup")
+async def shutup(ctx, arg):
+    if arg == "flipper":
+        await ctx.channel.send("ok bye", file=discord.File('flipper.jpg'))
+    elif arg == "doggy":
+        await ctx.channel.send("ok waf", file=discord.File('dog.jpeg'))
 
 bot.run(os.getenv("TOKEN"))
