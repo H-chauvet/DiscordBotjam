@@ -38,7 +38,7 @@ async def echo(ctx, *, content:str):
 
 @bot.command(name="dolphin")
 async def dolphin(ctx):
-    await ctx.channel.send("Very cute picture of a dolphin", file=discord.File('dolphin.png'))
+    await ctx.channel.send("Very cute picture of a dolphin", file=discord.File('assets/dolphin.png'))
 
 @bot.command(name="waf")
 async def waf(ctx):
@@ -47,9 +47,9 @@ async def waf(ctx):
 @bot.command(name="shutup")
 async def shutup(ctx, arg):
     if arg == "flipper":
-        await ctx.channel.send("ok bye", file=discord.File('flipper.jpg'))
+        await ctx.channel.send("ok bye", file=discord.File('assets/flipper.jpg'))
     elif arg == "doggy":
-        await ctx.channel.send("ok waf", file=discord.File('dog.jpeg'))
+        await ctx.channel.send("ok waf", file=discord.File('assets/dog.jpeg'))
 
 def play_song(client, queue, song):
     source = discord.PCMVolumeTransformer(discord.FFmpegPCMAudio(song.stream_url
@@ -98,14 +98,14 @@ async def leave(ctx):
 
 @bot.command(name="cat")
 async def dolphin(ctx):
-    await ctx.channel.send("Very cute picture of a cat", file=discord.File('cat.jpg'))
+    await ctx.channel.send("Very cute picture of a cat", file=discord.File('assets/cat.jpg'))
 
 @bot.command(name="redpanda")
 async def dolphin(ctx):
-    await ctx.channel.send("Very cute picture of a red panda", file=discord.File('pandaroux.jpg'))
+    await ctx.channel.send("Very cute picture of a red panda", file=discord.File('assets/pandaroux.jpg'))
 
 @bot.command(name="unicorn")
 async def dolphin(ctx):
-    await ctx.channel.send("Very cute picture of a unicorn", file=discord.File('unicorn.jpg'))
+    await ctx.channel.send("Very cute picture of a unicorn", file=discord.File('assets/unicorn.jpg'))
 
 bot.run(os.getenv("TOKEN"))
