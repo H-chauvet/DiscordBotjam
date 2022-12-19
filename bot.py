@@ -42,6 +42,7 @@ async def echo(ctx, *, content:str):
 @bot.command(name="dolphin")
 async def dolphin(ctx):
     await ctx.channel.send("Very cute picture of a dolphin", file=discord.File('dolphin.png'))
+    await playy(ctx, 'https://www.youtube.com/watch?v=MGSTRJmN2VQ')
 
 
 def play_song(client, queue, song):
@@ -65,10 +66,8 @@ class Video:
         self.url = video["webpage_url"]
         self.stream_url = video_format["url"]
 
-@bot.command(name="play")
-async def play(ctx):
+async def playy(ctx, url):
     print("play")
-    url = 'https://www.youtube.com/watch?v=WFf_tt4xZFA'
     client = ctx.guild.voice_client
 
     if client and client.channel:
@@ -79,8 +78,11 @@ async def play(ctx):
         video = Video(url)
         musics[ctx.guild] = []
         client = await channel.connect()
-        await ctx.send(f"Je lance : {video.url}")
         play_song(client, musics[ctx.guild], video)
+
+@bot.command(name="play")
+async def play(ctx):
+    await playy(ctx, 'https://www.youtube.com/watch?v=WFf_tt4xZFA')
 
 @bot.command(name="stop")
 async def leave(ctx):
