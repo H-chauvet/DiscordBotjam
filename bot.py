@@ -3,7 +3,6 @@ import discord
 import os
 from dotenv import load_dotenv
 
-
 load_dotenv(dotenv_path="config")
 
 intents = discord.Intents.all()
@@ -33,6 +32,10 @@ async def ping(ctx):
 @bot.command()
 async def echo(ctx, *, content:str):
     await ctx.send(content)
+
+@bot.command(name="dolphin")
+async def dolphin(ctx):
+    await ctx.channel.send("Very cute picture of a dolphin", file=discord.File('dolphin.png'))
 
 
 bot.run(os.getenv("TOKEN"))
