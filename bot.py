@@ -1,5 +1,10 @@
 from discord.ext import commands
 import discord
+import os
+from dotenv import load_dotenv
+
+
+load_dotenv(dotenv_path="config")
 
 intents = discord.Intents.all()
 prefix = "!"
@@ -30,4 +35,4 @@ async def echo(ctx, *, content:str):
     await ctx.send(content)
 
 
-bot.run('')
+bot.run(os.getenv("TOKEN"))
