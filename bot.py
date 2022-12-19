@@ -30,4 +30,4 @@ async def echo(ctx, *, content:str):
     await ctx.send(content)
 
 
-bot.run('OTg1NjgwOTI5ODI3NzI5NDM5.Gm5cHb.n7Tt3mDOXdUHKc8UYPaDaHxKUc--MuUaSFXAWs')
+bot.run('')
