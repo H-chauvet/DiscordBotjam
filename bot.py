@@ -21,6 +21,11 @@ async def on_ready():
     print("Le bot est prêt !")
 
 @bot.event
+async def on_member_join(member):
+    channel = bot.get_channel(1054397805533343746)
+    await channel.send(f"Bienvenue a {member.mention} sur le serveur !\nN'hésitez pas à soutenir la spa: https://soutenir.la-spa.fr/extraordinaireP/~mon-don")
+
+@bot.event
 async def on_message(message):
     if message.content == "???":
         await message.channel.send("????")
