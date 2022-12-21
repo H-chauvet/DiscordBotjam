@@ -140,6 +140,8 @@ class Pet:
         self.type = type
         self.level = level
         self.energy = 3
+        self.attack = 1
+        self.hp = 3
 
 @bot.command(name="pet-choose")
 async def choose(ctx, arg):
@@ -183,6 +185,13 @@ async def pet_info(ctx):
         if pet.user_id == ctx.author.id:
             await ctx.channel.send(f"Votre {pet.type} {pet.name} est au niveau {pet.level} et il lui reste {pet.energy} points d'énergie !")
 
+@bot.command(name="pet-stat")
+async def pet_stat(ctx):
+    global pets
+    for pet in pets:
+        if pet.user_id == ctx.author.id:
+            await ctx.channel.send(f"Votre {pet.type} {pet.name} a {pet.attack} points d'attaque et {pet.hp} points de vie !")
+
 @bot.command(name="pet-training")
 async def training(ctx):
     global pets
@@ -193,6 +202,8 @@ async def training(ctx):
             else:
                 pet.energy -= 1
                 pet.level += 1
+                pet.attack += 1
+                pet.hp += 1
                 await ctx.channel.send(f"Votre {pet.type} {pet.name} est passé au niveau {pet.level} !")
 
 @bot.command(name="pet-feed")
@@ -205,5 +216,44 @@ async def feed(ctx):
             else:
                 pet.energy = 3
                 await ctx.channel.send(f"Vous avez nourri votre {pet.type} {pet.name} !")
+
+@bot.command(name="pet-fight")
+async def fight(ctx, user: discord.User=None):
+    global pets
+    global user_food
+    user_pet = None
+    opponent_pet = None
+    for pet in pets:
+        if pet.user_id == ctx.author.id:
+            user_pet = pet
+        elif pet.user_id == user.id:
+            opponent_pet = pet
+    if (user_pet != None and opponent_pet != None):
+        original_user_hp = user_pet.hp
+        original_opponent_hp = opponent_pet.hp
+        while (user_pet.hp > 0 and opponent_pet.hp > 0):
+            opponent_pet.hp -= user_pet.attack
+            user_pet.hp -= opponent_pet.attack
+            await ctx.channel.send(f"{user_pet.name} a {user_pet.hp} points de vie et {opponent_pet.name} a {opponent_pet.hp} points de vie !")
+        if (user_pet.hp > 0):
+            user_pet.hp = original_user_hp
+            opponent_pet.hp = original_opponent_hp
+            user_pet.level += 1
+            user_pet.attack += 1
+            user_pet.hp += 1
+            await ctx.channel.send(f"{user_pet.name} a gagné et augmente son niveau de 1 !")
+        elif (user_pet.hp == opponent_pet.hp):
+            user_pet.hp = original_user_hp
+            opponent_pet.hp = original_opponent_hp
+            await ctx.channel.send("Egalité !")
+        else:
+            user_pet.hp = original_user_hp
+            opponent_pet.hp = original_opponent_hp
+            opponent_pet.level += 1
+            opponent_pet.attack += 1
+            opponent_pet.hp += 1
+            await ctx.channel.send(f"{opponent_pet.name} a gagné et augmente son niveau de 1 !")
+    else:
+        await ctx.channel.send("Vous n'avez pas de pet ou l'utilisateur n'en a pas !")
 
 bot.run(os.getenv("TOKEN"))
