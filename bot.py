@@ -143,6 +143,9 @@ class Pet:
         self.attack = 1
         self.hp = 3
 
+good_pets = ['dragon', 'licorne', 'dolphin', 'chat', 'panda roux', 'chien', 'serpent', 'éléphant', 'moufette', 'fouine', 'hamster', 'coq', 'poule', 'mouton', 'chèvre',
+             'bison', 'baleine', 'requin', 'lapin', 'pigeon', 'canard', 'vache', 'cheval', 'poney', 'poulpe', 'souris', 'rat', 'singe', 'gorille', 'tigre', 'lion', 'ours']
+
 @bot.command(name="pet-choose")
 async def choose(ctx, arg):
     global pets
@@ -153,6 +156,11 @@ async def choose(ctx, arg):
             await ctx.channel.send("Vous avez déjà un animal, Si vous voulez en changer, utilisez la commande !pet-delete")
             return
     user_food[ctx.author.id] = 1
+    if (arg not in good_pets):
+        await ctx.channel.send("Vous ne pouvez pas choisir cet animal")
+        await ctx.channel.send("Voici la liste des animaux que vous pouvez choisir :")
+        await ctx.channel.send(good_pets)
+        return
     new_pet = Pet(ctx.author.id, arg, 1)
     pets.append(new_pet)
     await ctx.channel.send(f"Vous avez choisi un {arg} !\nVous pouvez maintenant le nommer avec la commande !pet-name")
